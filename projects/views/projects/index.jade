@@ -1,0 +1,31 @@
+extends ../layout
+
+block content
+    include ../menu
+    h1.
+        #{title}
+    p User: #{userName}
+    a(href='/projects/new') Add new project
+    ul
+        - each project, i in projects
+            li
+                = project.name 
+                = project.description 
+                = project.price 
+                = project.finished_jobs 
+                = project.start_date 
+                = project.end_date 
+                
+                if project.leader._id.equals(locals.user._id)
+                    form(action='/projects/#{project._id}/edit',method='post',enctype='application/x-www-form-urlencoded')
+                        input(type='hidden',value='DELETE',name='_method')
+                        button(type='submit').
+                            Delete
+                p 
+                    a(href='/projects/#{project._id}/edit') Edit
+                p   
+                    a(href='/projects/#{project._id}') Show
+                p
+                    a(href='/projects/#{project._id}/member') Add member
+                p
+                    a(href='/projects/#{project._id}/archive') Archive project

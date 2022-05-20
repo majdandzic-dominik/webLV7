@@ -1,0 +1,12 @@
+if locals.user
+    div#menu
+        span(class=name)
+            =user.name
+        a(href='/projects') Projects <br>
+        a(href='/projects/membership') Membership <br>
+        a(href='/projects/my_archive') Archive  <br>
+        a(href='/signout') Log out
+else
+    div#menu
+        a(href='/login')  Login
+        a(href='/register')  Register

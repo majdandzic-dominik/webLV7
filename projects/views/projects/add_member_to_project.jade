@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+    h1.
+        #{title}
+    a(href='/projects') Go back
+    ul
+        - each user, i in users
+            li
+                = user.username
+                form(action='/projects/#{project._id}/member',method='post',name='addMemberToProject',enctype='application/x-www-form-urlencoded')       
+                    input#inputUser(type="hidden", name="user_id", value=user.id)
+                    button#btnSubmit(type="submit") add
